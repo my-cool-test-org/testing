@@ -10,38 +10,13 @@ on:
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    environment: my-env
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Create local changes
+      - name: Echo something
         run: |
-          echo test > newfile
-          git add newfile
-      - name: Commit files
-        run: |
-          sudo apt update -qq
-          sudo apt install git
-          git config --local user.email "namatyage@gmail.com"
-          git config --local user.name "tyage"
-          git commit -m "Add changes" -a
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          publish_branch: main
-          force_orphan: true
+          echo "Hello there"
