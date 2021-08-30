@@ -14,9 +14,8 @@ on:
 
 jobs:
   build:
-    environment: my-env2
     runs-on: ubuntu-latest
     steps:
       - name: Echo something
         run: |
-          exit 1
+          exit 0
